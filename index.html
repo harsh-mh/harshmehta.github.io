@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Mehta - Data Scientist Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Navbar Styles */
+        .navbar {
+            height: 60px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .logo-image {
+            height: 50px;
+            width: 50px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Keep existing nav-links and hamburger styles */
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .hamburger {
+                display: block;
+                font-size: 1.2rem;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 0;
+            }
+        }
+        .research-meta {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .research-type {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .volunteer .education-item {
+            border-left: 3px solid #4CAF50;
+            background-color: #f9fff9;
+        }
+        
+        .volunteer .university-header {
+            align-items: flex-start;
+        }
+        
+        .volunteer .degree {
+            margin-bottom: 5px;
+        }
+        
+        .project-link i {
+            margin-right: 5px;
+        }
+        .certification-item {
+            margin-bottom: 2rem;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .institution-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .institution-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+        
+        .institution-name {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .certification-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .certification-title {
+            margin: 0;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 480px) {
+            .institution-logo {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .certification-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+        }
+        .education-item {
+            margin-bottom: 2.5rem;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .university-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .university-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+        
+        .university-name {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .degree-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .degree {
+            margin: 0;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 480px) {
+            .university-logo {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .university-name {
+                font-size: 1.1rem;
+            }
+            
+            .degree-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+        }
+        .company-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 10px;
+        }
+        
+        .company-logo {
+          width: 30px;
+          height: 30px;
+          object-fit: contain;
+        }
+        
+        .company-name {
+          font-weight: bold;
+          color: var(--primary-color);
+          font-size: 1.1rem;
+        }
+        
+        .role-info {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+        
+        .job-title {
+          margin: 0;
+          color: var(--secondary-color);
+        }
+    
+    .logo-image {
+        height: 80px; /* Adjust as needed */
+        width: 100px; 
+        transition: transform 0.3s ease;
+      }
+      
+      .logo-image:hover {
+        transform: scale(1.05); /* Optional hover effect */
+      }
+             
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --gradient: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navbar Styles */
+    
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        
+        /* Header Styles */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 5rem 0 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background-size: cover;
+            opacity: 0.1;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .contact-info a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .contact-info a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            position: relative;
+        }
+        
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0.5rem 1rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient);
+        }
+        
+        h3 {
+            color: var(--dark-color);
+            margin: 1rem 0 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .summary p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .skill-category h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .skill-category ul {
+            list-style-type: none;
+        }
+        
+        .skill-category li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .skill-category li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .skill-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+        
+        .experience-item, .education-item, .certification-item {
+            margin-bottom: 2rem;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .experience-item:hover, .education-item:hover, .certification-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .job-title, .degree {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .company, .university {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .company-logo, .university-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        
+        .date {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .experience-item ul, .project-item ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+        
+        .experience-item li, .project-item li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .project-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-color: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3);
+        }
+        
+        .project-image span {
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-content p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .project-link:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .languages-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .language-item {
+            background-color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .language-flag {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+        
+        footer {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s, background-color 0.3s;
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .skills-container {
+                flex-direction: column;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .logo-text {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+
+                <img src= "https://github.com/harsh-mh/img/blob/main/HArsh%20MEhta.png?raw=true" alt="Harsh Mehta Logo" class="logo-image">
+              </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header id="about">
+        <div class="container">
+            <h1>Harsh Mehta</h1>
+            <p class="tagline">Data Scientist | AI & Machine Learning Specialist</p>
+            <div class="contact-info">
+                <a href="mailto:harshm2024@gmail.com"><i class="fas fa-envelope"></i> harshm2024@gmail.com</a>
+                <a href="tel:+39327369429"><i class="fas fa-phone"></i> +39 327369429</a>
+                <span><i class="fas fa-map-marker-alt"></i> Catania, Italy</span>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/harsh-mh" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/harsh-mehta-8200331bb/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="summary">
+            <h2>Summary</h2>
+            <p>Data Scientist with expertise in machine learning, data analytics, and AI-driven solutions. Skilled in predictive modeling, NLP, and business intelligence, with hands-on experience in Python, SQL, Power BI, and cloud platforms. Adept at transforming data into actionable insights to drive decision-making and process optimization.</p>
+        </section>
+
+        <section class="skills" id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h4><i class="fas fa-database"></i> Databases & ETL</h4>
+                    <ul>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="skill-icon" alt="SQL"> SQL</li>
+                        <li><img src="https://img.icons8.com/?size=100&id=XaCEPYiVmH5b&format=png&color=000000" class="skill-icon" alt="Python"> Data Warehousing</li>
+                        <li><img src="https://img.icons8.com/?size=100&id=117561&format=png&color=000000" class="skill-icon" alt="Excel"> Microsoft Excel</li>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" class="skill-icon" alt="GCP"> Google Cloud Platform</li>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" class="skill-icon" alt="Azure"> Microsoft Azure</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4><i class="fas fa-brain"></i> Machine Learning & AI</h4>
+                    <ul>
+                        <li><img src="https://img.icons8.com/?size=100&id=oOOSYZyuA844&format=png&color=000000" class="skill-icon" alt="Python"> Deep Learning</li>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skill-icon" alt="Python"> Scikit-learn</li>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" class="skill-icon" alt="TensorFlow"> TensorFlow</li>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" class="skill-icon" alt="PyTorch"> PyTorch</li>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skill-icon" alt="Python"> Python</li>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" class="skill-icon" alt="R"> R</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4><i class="fas fa-chart-line"></i> Data Analysis & Visualization</h4>
+                    <ul>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" class="skill-icon" alt="Pandas"> Pandas</li>
+                        <li><img src="https://img.icons8.com/?size=100&id=qYfwpsRXEcpc&format=png&color=000000" class="skill-icon" alt="Power BI"> Power BI</li>
+                        <li><img src="https://img.icons8.com/?size=100&id=9Kvi1p1F0tUo&format=png&color=000000" class="skill-icon" alt="Tableau"> Tableau</li>
+                        <li><img src="https://img.icons8.com/?size=100&id=g7UKWvv49CoI&format=png&color=000000" class="skill-icon" alt="Office"> Microsoft Office Suite</li>
+                        <li><img src="https://seeklogo.com/images/M/matplotlib-logo-7676870AC0-seeklogo.com.png" class="skill-icon" alt="Matplotlib"> Matplotlib</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4><i class="fas fa-lightbulb"></i> Business Intelligence</h4>
+                    <ul>
+                        <li><i class="fas fa-chart-pie"></i> Data-driven decision-making</li>
+                        <li><i class="fas fa-digital-tachograph"></i> Digital Transformation</li>
+                        <li><i class="fas fa-tasks"></i> Project Management</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="experience" id="experience">
+            <h2>Work Experience</h2>
+            <div class="experience-item">
+                <!-- Company logo and name at the top -->
+                <div class="company-header">
+                  <img src="https://companieslogo.com/img/orig/STM-4f4a0bab.png?t=1650191522" class="company-logo" alt="STMicroelectronics">
+                  <span class="company-name">STMicroelectronics</span>
+                </div>
+                <!-- Role/Job title and date below -->
+                <div class="role-info">
+                  <h3 class="job-title">Machine Learning Intern</h3>
+                  <div class="date"><i class="far fa-calendar-alt"></i> Sep.2022 - Sep.2023</div>
+                </div>
+                
+                <!-- Job description bullets -->
+                <ul>
+                  <li><strong>Collected, cleaned, and processed data</strong> for machine learning applications</li>
+                  <li><strong>Deployed trained models</strong> into production, improving simulation time by 70%.</li>
+                  <li>Collaborated with cross-functional teams to integrate <strong>ML solutions</strong> into existing systems</li>
+                </ul>
+            </div>
+                <!-- Initiative Media -->
+    <div class="experience-item">
+        <div class="company-header">
+            <img src="https://th.bing.com/th/id/OIP.cAm_7MfOPtyMCiHJ_R72sAHaC7?w=305&h=138&c=7&r=0&o=5&dpr=1.1&pid=1.7" class="company-logo" alt="Initiative Media">
+            <span class="company-name">Initiative Media</span>
+        </div>
+        <div class="role-info">
+            <h3 class="job-title">Business Analyst</h3>
+            <div class="date"><i class="far fa-calendar-alt"></i> Sep.2021 - Sep.2022</div>
+        </div>
+        <ul>
+            <li>Utilized <strong>Power BI, SQL, and DAX</strong> to design interactive dashboards, leading to a <strong>20% increase in user engagement</strong>.</li>
+            <li>Conducted data-driven advisory projects, collaborating with stakeholders to define requirements and optimize workflows.</li>
+            <li>Supported <strong>digital transformation</strong> initiatives by aligning data strategies with business objectives.</li>
+        </ul>
+    </div>
+    
+    <!-- BrandVU -->
+    <div class="experience-item">
+        <div class="company-header">
+            <img src="https://th.bing.com/th/id/OIP.b_ZoCiYblsjAYgDnWGBQHQHaCQ?w=343&h=106&c=7&r=0&o=5&dpr=1.1&pid=1.7" class="company-logo" alt="Initiative Media">
+            <span class="company-name">BrandVU</span>
+        </div>
+        <div class="role-info">
+            <h3 class="job-title">Data Analyst Intern</h3>
+            <div class="date"><i class="far fa-calendar-alt"></i> Apr.2021 - Aug.2021</div>
+        </div>
+        <ul>
+            <li>Conducted <strong>data analysis</strong> on consumer reviews to derive business insights, supporting <strong>marketing strategies</strong>.</li>
+            <li>Designed <strong>interactive visualizations</strong> using Tableau to present actionable recommendations to stakeholders.</li>
+        </ul>
+    </div>
+        </section>
+
+        <!-- Education Section -->
+<section class="education" id="education">
+    <h2>Education</h2>
+    
+    <!-- University of Catania -->
+    <div class="education-item">
+        <div class="university-header">
+            <img src="https://www.designtagebuch.de/wp-content/uploads/mediathek/2021/02/uni-catania-logo.jpg" 
+                 class="university-logo" 
+                 alt="University of Catania">
+            <span class="university-name">University of Catania</span>
+        </div>
+        <div class="degree-info">
+            <h3 class="degree">MSc in Data Science</h3>
+            <div class="date"><i class="far fa-calendar-alt"></i> Oct.2022 - Sep.2024</div>
+        </div>
+        <p>Focused on data analytics, business intelligence, and data warehousing. Gained expertise in handling large datasets, data visualization, and stakeholder reporting.</p>
+    </div>
+    
+    <!-- University of Mumbai -->
+    <div class="education-item">
+        <div class="university-header">
+            <img src="https://th.bing.com/th/id/OIP.bMVbDUXa6yX4NQ_BCghLcAHaHO?rs=1&pid=ImgDetMain" 
+                 class="university-logo" 
+                 alt="University of Mumbai">
+            <span class="university-name">University of Mumbai</span>
+        </div>
+        <div class="degree-info">
+            <h3 class="degree">BSc in Information Technology</h3>
+            <div class="date"><i class="far fa-calendar-alt"></i> Jun.2018 - Apr.2021</div>
+        </div>
+        <p>Developed a strong foundation in database management, computational techniques, and business intelligence.</p>
+    </div>
+</section>
+
+<!-- Professional Development Section -->
+<section class="certifications">
+    <h2>Professional Development</h2>
+    
+    <!-- Google Certification (Most Relevant) -->
+    <div class="certification-item">
+        <div class="institution-header">
+            <img src="https://img.icons8.com/?size=100&id=V5cGWnc9R4xj&format=png&color=000000" 
+                 class="institution-logo" 
+                 alt="Google">
+            <span class="institution-name">Google</span>
+        </div>
+        <div class="certification-info">
+            <h3 class="certification-title">Google Data Analyst Certification</h3>
+            <div class="date"><i class="far fa-calendar-alt"></i> Feb 2022</div>
+        </div>
+        <p>Mastered data analysis fundamentals, including cleaning, visualization, and <strong>advanced SQL</strong>.</p>
+    </div>
+    
+    <!-- Karlstad University -->
+    <div class="certification-item">
+        <div class="institution-header">
+            <img src="https://www.kau.se/files/styles/max_650x650/public/2016-06/Kau_2012_CMYK_2.png?itok=FdYPgezG" 
+                 class="institution-logo" 
+                 alt="Karlstad University">
+            <span class="institution-name">Karlstad University, Sweden</span>
+        </div>
+        <div class="certification-info">
+            <h3 class="certification-title">International Project Management (7.5 ECTS)</h3>
+            <div class="date"><i class="far fa-calendar-alt"></i> Jun 2025</div>
+        </div>
+        <p>Developing skills in Agile project management, focusing on global team coordination. Final Project (Ongoing): Managing a simulated project to implement a <strong>Power BI dashboard</strong> for a multinational team.</p>
+    </div>
+    
+    <!-- Power BI Certification -->
+    <div class="certification-item">
+        <div class="institution-header">
+            <img src="https://sarvar8950.github.io/internshala_clone.github.io/images/internshala_logo.png" 
+                 class="institution-logo" 
+                 alt="Power BI">
+            <span class="institution-name">Internshala</span>
+        </div>
+        <div class="certification-info">
+            <h3 class="certification-title">Power BI Training Certification</h3>
+            <div class="date"><i class="far fa-calendar-alt"></i> Oct 2021</div>
+        </div>
+        <p>Gained hands-on experience in creating interactive dashboards and reports with Power BI, including DAX.</p>
+    </div>
+    
+    <!-- Data Science Certification -->
+    <div class="certification-item">
+        <div class="institution-header">
+            <img src="https://sarvar8950.github.io/internshala_clone.github.io/images/internshala_logo.png" 
+                 class="institution-logo" 
+                 alt="Data Science">
+            <span class="institution-name">Internshala</span>
+        </div>
+        <div class="certification-info">
+            <h3 class="certification-title">Data Science Training</h3>
+            <div class="date"><i class="far fa-calendar-alt"></i> Jun 2020</div>
+        </div>
+        <p>Covered machine learning, data preprocessing, exploratory analysis, and Python-based data science techniques.</p>
+    </div>
+    
+    <!-- Trustworthy ML -->
+    <div class="certification-item">
+        <div class="institution-header">
+            <img src="https://th.bing.com/th/id/OIP.byKcY6EsZJbrrzGTUKLXDgAAAA?rs=1&pid=ImgDetMain" 
+                 class="institution-logo" 
+                 alt="Université Polytechnique">
+            <span class="institution-name">Université Polytechnique des Hauts-de-France</span>
+        </div>
+        <div class="certification-info">
+            <h3 class="certification-title">Foundations of Trustworthy Machine Learning (4 ECTS)</h3>
+            <div class="date"><i class="far fa-calendar-alt"></i> Jun 2025</div>
+        </div>
+        <p>Studying fairness, transparency, and robustness in machine learning models, focusing on ethical AI considerations.</p>
+    </div>
+    
+    <!-- Cybersecurity -->
+    <div class="certification-item">
+        <div class="institution-header">
+            <img src="https://edurank.org/assets/img/uni-logos/poznan-university-of-technology-logo.png" 
+                 class="institution-logo" 
+                 alt="Cybersecurity">
+            <span class="institution-name">Poznan University of Technology</span>
+        </div>
+        <div class="certification-info">
+            <h3 class="certification-title">Cybersecurity of IoT Solutions (15 ECTS)</h3>
+            <div class="date"><i class="far fa-calendar-alt"></i> 2023</div>
+        </div>
+        <p>Explored IoT security challenges, cryptographic protocols, network security, and risk assessment strategies.</p>
+    </div>
+</section>
+
+
+<section class="portfolio" id="projects">
+    <h2>Projects</h2>
+    <div class="portfolio-grid">
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://th.bing.com/th/id/OIP.2MeHcZKN6QlrlcZ5yY4djQHaFZ?w=268&h=195&c=7&r=0&o=5&dpr=1.1&pid=1.7');">
+            </div>
+            <div class="project-content">
+                <h3>Predictive Maintenance of Wind Turbine</h3>
+                <p>Developed a predictive maintenance model for wind turbines using SCADA data and machine learning techniques.</p>
+                <a href="https://github.com/yourusername/Predictive-Maintenance-Of-Wind-Turbine" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://th.bing.com/th/id/OIP.WY1QdV6cQLDm0eTMGT1NsgHaFj?w=2048&h=1536&rs=1&pid=ImgDetMain');">
+            </div>
+            <div class="project-content">
+                <h3>Fish Classification Data</h3>
+                <p>Developed a classification model to identify different species of fish from images using deep learning techniques.</p>
+                <a href="https://github.com/yourusername/Fish_classification_data" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://th.bing.com/th/id/R.248c4541d222736c53413519e576d213?rik=Hm0kvItzssxCcg&riu=http%3a%2f%2fwww.publicdomainpictures.net%2fpictures%2f80000%2fvelka%2ftelecommunication-antennas.jpg&ehk=D72DV%2bkSUY%2bFPpxwSSSbW7fpi%2fd2R0kZPjKd3IRa8p0%3d&risl=&pid=ImgRaw&r=0');">
+            </div>
+            <div class="project-content">
+                <h3>Milan Telecom Data Analysis and Prediction</h3>
+                <p>Analyzed internet traffic in Milan (Nov–Dec 2013) as part of the IMDEA assignment, conducting EDA and forecasting.</p>
+                <a href="https://github.com/yourusername/Milan_telecom_data_analysis_and_prediction" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://wallpapercave.com/wp/V5Rt9YP.jpg');">
+            </div>
+            <div class="project-content">
+                <h3>APS Failure PdM</h3>
+                <p>Developed a pattern recognition system for Scania Trucks' air pressure system to reduce maintenance costs.</p>
+                <a href="https://github.com/yourusername/APS-Failure-PdM" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.gavi.org/sites/default/files/vaccineswork/2022/Thumbnail/Monkeypox_Chart-3_h2.jpg');">
+            </div>
+            <div class="project-content">
+                <h3>Monkeypox EDA and Time Series Modeling</h3>
+                <p>Conducted exploratory data analysis and time series forecasting on Monkeypox data using statistical and ML methods.</p>
+                <a href="https://github.com/yourusername/Monkeypox_EDA-and-timeseries-modeling" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://scwcontent.affino.com/AcuCustom/Sitename/DAM/014/bikeshare_Adobe.jpg');">
+            </div>
+            <div class="project-content">
+                <h3>Bike Sharing System Prediction</h3>
+                <p>Built a predictive model to forecast bike demand using time-series analysis and machine learning techniques.</p>
+                <a href="https://github.com/yourusername/Bike-sharing-system-prediction" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://th.bing.com/th/id/OIP.FLInJCwYdnzFAqx7MTcODgHaE8?w=768&h=512&rs=1&pid=ImgDetMain');">
+            </div>
+            <div class="project-content">
+                <h3>Machine Learning Techniques for Water Potability</h3>
+                <p>Conducted EDA and applied logistic regression, random forest, and neural networks for water potability prediction.</p>
+                <a href="https://github.com/yourusername/Machine-Learning-Technique-Water-Potability" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i0.wp.com/empty-nestopia.com/wp-content/uploads/2016/09/all3winecolors.jpg');">
+            </div>
+            <div class="project-content">
+                <h3>Wine Quality Data Analysis</h3>
+                <p>Final project for statistical laboratory course in R, analyzing wine quality dataset.</p>
+                <a href="https://github.com/yourusername/Wine-quality-Data-Analysis" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+          
+            </div>
+            <div class="project-content">
+                <h3>Airbnb Sicily – Big Data Analytics Project</h3>
+                <p>Developed an ETL pipeline using SQL and Python to process large Airbnb datasets, ensuring data quality. Created an Interactive Tableau dashboard for decision making and sales analysis.</p>
+                <a href="https://github.com/yourusername/airbnb-sicily" class="project-link" target="_blank"><i class="fab fa-github"></i> View slides</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1584483766114-2cea6facdf57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+            </div>
+            <div class="project-content">
+                <h3>Covid-19 CT Scan Prediction</h3>
+                <p>Used CNN architectures to classify COVID-19 cases from CT scans. Preprocessed data in Python and implemented models in MATLAB.</p>
+                <a href="https://github.com/yourusername/covid-ct-scan" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+            
+        </div>
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+            </div>
+            <div class="project-content">
+                <h3>Telemetry Data-Based Predictive Maintenance</h3>
+                <p>Developed a machine learning model utilizing telemetry data for predictive maintenance insights.</p>
+                <a href="https://github.com/yourusername/Telemetry-Predictive-Maintenance" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+        <!-- Research & Academic Work Section -->
+<section class="research">
+    <h2>Research & Academic Work</h2>
+    <div class="portfolio-grid">
+        <!-- Thesis 1 -->
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+                <span>Master's Thesis</span>
+            </div>
+            <div class="project-content">
+                <h3>Digital Transformation in Indian SMEs</h3>
+                <p>Comprehensive analysis of digital adoption patterns across 200+ small and medium enterprises, identifying key success factors for technology implementation.</p>
+                <div class="research-meta">
+                    <span class="research-type">Thesis</span>
+                    <span class="research-date">2023</span>
+                </div>
+                <a href="#" class="project-link"><i class="fas fa-file-pdf"></i> View Document</a>
+            </div>
+        </div>
+        
+        <!-- Journal Article 1 -->
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+                <span>Journal Publication</span>
+            </div>
+            <div class="project-content">
+                <h3>AI in Manufacturing: An Indian Perspective</h3>
+                <p>Peer-reviewed article analyzing predictive maintenance adoption in 50+ factories, with ROI framework for ML implementations.</p>
+                <div class="research-meta">
+                    <span class="research-type">Journal Article</span>
+                    <span class="research-date">2022</span>
+                </div>
+                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> View Online</a>
+            </div>
+        </div>
+        
+        <!-- Conference Paper -->
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+                <span>Conference Paper</span>
+            </div>
+            <div class="project-content">
+                <h3>NLP for Policy Awareness Analysis</h3>
+                <p>Presented at Int'l Data Science Conference: Sentiment analysis of government digital outreach using Twitter data.</p>
+                <div class="research-meta">
+                    <span class="research-type">Conference Paper</span>
+                    <span class="research-date">2021</span>
+                </div>
+                <a href="#" class="project-link"><i class="fas fa-file-powerpoint"></i> View Slides</a>
+            </div>
+        </div>
+        
+        
+        <!-- Market Research -->
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+                <span>Market Research</span>
+            </div>
+            <div class="project-content">
+                <h3>Digital Literacy in Rural India</h3>
+                <p>Quantitative study measuring technology adoption barriers in 15 Maharashtra villages with policy recommendations.</p>
+                <div class="research-meta">
+                    <span class="research-type">Research Report</span>
+                    <span class="research-date">2020</span>
+                </div>
+                <a href="#" class="project-link"><i class="fas fa-chart-bar"></i> View Findings</a>
+            </div>
+        </div>
+        
+        <!-- White Paper -->
+        <div class="project-item">
+            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1495465798138-718f86d1a4bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+                <span>Technical White Paper</span>
+            </div>
+            <div class="project-content">
+                <h3>Blockchain for Public Health Data</h3>
+                <p>Framework for secure health data sharing between government agencies, tested during COVID-19 awareness campaigns.</p>
+                <div class="research-meta">
+                    <span class="research-type">White Paper</span>
+                    <span class="research-date">2021</span>
+                </div>
+                <a href="#" class="project-link"><i class="fas fa-file-contract"></i> Download PDF</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <section class="languages" id="contact">
+            <h2>Languages</h2>
+            <div class="languages-list">
+                <div class="language-item"><img src="https://img.icons8.com/?size=100&id=xapj7ZzAUZKI&format=png&color=000000" class="language-flag" alt="English"> English (C1)</div>
+                <div class="language-item"><img src="https://img.icons8.com/?size=100&id=HgrhrvtEzvc1&format=png&color=000000" class="language-flag" alt="Hindi"> Hindi (C1)</div>
+                <div class="language-item"><img src="https://img.icons8.com/?size=100&id=JfBHeXaPw7Gu&format=png&color=000000" class="language-flag" alt="Italian"> Italian (A2)</div>
+            </div>
+        </section>
+    
+
+
+<!-- Volunteer Experience Section -->
+<section class="volunteer">
+    <h2>Volunteer Experience</h2>
+    
+    <div class="education-item">
+        <div class="university-header">
+            <img src="https://e7.pngegg.com/pngimages/921/740/png-clipart-black-text-with-logo-illustration-mumbai-government-of-india-government-of-maharashtra-logo-government-miscellaneous-emblem.png" 
+                 class="university-logo" 
+                 alt="UNICEF">
+            <div>
+                <h3 class="degree">Yuva Mahiti Doot Volunteer</h3>
+                <div class="date"><i class="far fa-calendar-alt"></i> Aug 2018 - Aug 2019 · Government of Maharashtra & UNICEF</div>
+            </div>
+        </div>
+        <p>Promoted awareness of state government policies through community workshops and digital campaigns, reaching 5,000+ residents across Maharashtra.</p>
+    </div>
+    
+    <div class="education-item">
+        <div class="university-header">
+            <img src="https://datri.org/wp-content/uploads/2018/07/datri-logo.png" 
+                 class="university-logo" 
+                 alt="DATRI">
+            <div>
+                <h3 class="degree">Blood Stem Cell Donor Recruiter</h3>
+                <div class="date"><i class="far fa-calendar-alt"></i> Feb 2020 - May 2022 · DATRI Blood Stem Cell Donors Registry</div>
+            </div>
+        </div>
+        <p>Organized donor registration drives that added 250+ potential donors to the national stem cell registry.</p>
+    </div>
+    
+    <div class="education-item">
+        <div class="university-header">
+            <img src="https://moodle.eunice-university.eu/pluginfile.php/1/theme_maisteriboost/logo/1740114374/eunice_logo.svg" 
+                 class="university-logo" 
+                 alt="EUNICE">
+            <div>
+                <h3 class="degree">University Ambassador</h3>
+                <div class="date"><i class="far fa-calendar-alt"></i> Jul 2023 - Present · EUNICE European University Alliance</div>
+            </div>
+        </div>
+        <p>Facilitate student exchanges and promote international education opportunities across 7 European universities.</p>
+    </div>
+</section>
+</main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Harsh Mehta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
