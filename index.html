@@ -745,6 +745,238 @@
                 display: none;
             }
         }
+
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --gradient: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            --gradient-hover: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        }
+        
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Enhanced Navbar */
+        .navbar {
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .nav-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+            background: var(--gradient);
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover::before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+        
+        /* Header Animation */
+        header {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        header h1 {
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+        
+        .tagline {
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+        
+        .contact-info {
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+        
+        .social-links {
+            animation: fadeIn 0.8s ease-out 0.8s both;
+        }
+        
+        /* Section Animations */
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Enhanced Cards */
+        .skill-category, 
+        .experience-item, 
+        .education-item, 
+        .certification-item, 
+        .project-item {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .skill-category:hover, 
+        .experience-item:hover, 
+        .education-item:hover, 
+        .certification-item:hover, 
+        .project-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: rgba(0,0,0,0.2);
+        }
+        
+        /* Project Image Hover Effect */
+        .project-image {
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+        
+        .project-item:hover .project-image {
+            transform: scale(1.05);
+        }
+        
+        /* Button Effects */
+        .project-link {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-link:hover {
+            background: var(--gradient-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .project-link::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255,255,255,0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%, -50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .project-link:hover::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        /* Floating Back to Top Button */
+        .back-to-top {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .back-to-top:hover {
+            animation: pulse 1s infinite;
+        }
+        
+        /* Skill Icons Animation */
+        .skill-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-category li:hover .skill-icon {
+            transform: rotate(15deg) scale(1.2);
+        }
+        
+        /* Language Flags Animation */
+        .language-item {
+            transition: all 0.3s ease;
+        }
+        
+        .language-item:hover {
+            background: var(--gradient);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .language-item:hover .language-flag {
+            transform: rotate(5deg) scale(1.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        /* Add these to your existing media queries */
+        @media (max-width: 768px) {
+            .nav-links a:hover {
+                background: transparent;
+                color: var(--primary-color);
+                transform: none;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -762,9 +994,9 @@
                 <a href="#education">Education</a>
                 <a href="#projects">Projects</a>
                 <a href="#certifications">Certifications</a>
-                <a href="research">Research</a>
-                <a href="languages">Languages</a>
-                <a href="volunteer">Volunteer</a>
+                <a href="#research">Research</a>  <!-- Fixed href -->
+                <a href="#languages">Languages</a>  <!-- Fixed href -->
+                <a href="#volunteer">Volunteer</a>  <!-- Fixed href -->
             </div>
             <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
@@ -1042,7 +1274,7 @@
 </section>
 
 <!-- Professional Development Section -->
-<section class="certifications">
+<section id="certifications" class="certifications">
     <h2>Professional Development and certifications</h2>
     
     <!-- Google Certification (Most Relevant) -->
@@ -1138,7 +1370,7 @@
 
         
         <!-- Research & Academic Work Section -->
-<section class="research">
+        <section id="research" class="research">
     <h2>Research & Academic Work</h2>
     <div class="portfolio-grid">
         <!-- Thesis 1 -->
@@ -1175,32 +1407,33 @@
         </div>
         
         
-        <!-- Market Research -->
-        <div class="project-item">
-            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
-            </div>
-            <div class="project-content">
-                <h3>Digital Literacy in Rural India</h3>
-                <p>Quantitative study measuring technology adoption barriers in 15 Maharashtra villages with policy recommendations.</p>
-                <a href="#" class="project-link"><i class="fas fa-chart-bar"></i> View Findings</a>
-            </div>
-        </div>
-        
         <!-- White Paper -->
-        <div class="project-item">
-            <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1495465798138-718f86d1a4bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
-            </div>
-            <div class="project-content">
-                <h3>Blockchain for Public Health Data</h3>
-                <p>Framework for secure health data sharing between government agencies, tested during COVID-19 awareness campaigns.</p>
-                <a href="#" class="project-link"><i class="fas fa-file-contract"></i> Download PDF</a>
-            </div>
-        </div>
+<div class="project-item">
+    <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.ansys.com/is/image/ansys/2021-09-ansys-og');">
+    </div>
+    <div class="project-content">
+        <h3>Ansys and Network Externalities</h3>
+        <p>This paper explores how Ansys leverages demand-side network externalities and strategic ecosystem development to dominate the simulation software industry.</p>
+        <a href="https://drive.google.com/file/d/1twkvlZvY8ausZceX0aqcPICAV9mpqm6Q/view?usp=sharing" class="project-link"><i class="fas fa-file-contract"></i> Download PDF</a>
+    </div>
+</div>
+
+        
+       <!-- White Paper -->
+<div class="project-item">
+    <div class="project-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://th.bing.com/th/id/OIP.bMVbDUXa6yX4NQ_BCghLcAHaHO?rs=1&pid=ImgDetMain');">
+    </div>
+    <div class="project-content">
+        <h3>Bachelor's Thesis</h3>
+        <p>A web application for organizing and attending interest-based events. Built using VueJS and Google Firebase, it enables real-time attendee tracking—designed to reconnect communities in a post-pandemic world.</p>
+       <a href="https://drive.google.com/file/d/1nkTwoF3klLM19zT0xayD37E8s9hNX0Gm/view?usp=drive_link" class="project-link"><i class="fas fa-file-pdf"></i> View Thesis</a>
+    </div>
+</div>
     </div>
 </section>
 
 
-        <section class="languages" id="contact">
+        <section id="languages" class="languages">
             <h2>Languages</h2>
             <div class="languages-list">
                 <div class="language-item"><img src="https://img.icons8.com/?size=100&id=xapj7ZzAUZKI&format=png&color=000000" class="language-flag" alt="English"> English (C1)</div>
@@ -1212,7 +1445,7 @@
 
 
 <!-- Volunteer Experience Section -->
-<section class="volunteer">
+<section id="volunteer" class="volunteer">
     <h2>Volunteer Experience</h2>
     
     <div class="education-item">
@@ -1303,6 +1536,52 @@
                 }
             });
         });
+        const sections = document.querySelectorAll('section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Existing mobile menu, back to top, and smooth scrolling code
+        // ... keep all your existing JavaScript ...
+        
+        // Add ripple effect to all buttons
+        document.querySelectorAll('.project-link').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                
+                // Create ripple
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple-effect');
+                this.appendChild(ripple);
+                
+                // Remove ripple after animation
+                setTimeout(() => {
+                    ripple.remove();
+                    if(target) window.location.href = target;
+                }, 600);
+            });
+        });
+
     </script>
 </body>
 </html>
